@@ -17,7 +17,6 @@ def format_data(data, index):
 	return result
 
 
-
 def get_nearest_neighbors(data, datapoint):
 	work_data = copy.deepcopy(data)
 	point = copy.deepcopy(datapoint)
@@ -27,10 +26,15 @@ def get_nearest_neighbors(data, datapoint):
 
 	distances, indices = neighbors.kneighbors(point)
 
-	print indices	
+	return indices
 
-	return
-	
+def predict(original_data, missing_value, nearest_indices, missing_value_index):
+	values = []
+	for index in nearest_indices:
+		values.append(original_data[index][missing_value_index])
+
+	average_val = np.mean(values)
+	print average_val
 
 
 def main():
@@ -39,7 +43,8 @@ def main():
 	data = format_data(original_data, missing_value_index)
 	m_value = format_data(missing_value, missing_value_index)
 
-	get_nearest_neighbors(data, m_value)
+	neares_indices = get_nearest_neighbors(data, m_value)
+	predict(original_data, missing_value, neares_indices, missing_value_index)
 
 
 
