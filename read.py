@@ -14,4 +14,4 @@ def get_data():
 
 			missing.append(temp)
 
-	return result, missing[0]
+	return result, missing
