@@ -1,5 +1,6 @@
 import task1
 from sklearn import tree
+from
 import numpy as np
 
 def separate_classifiers(data):
@@ -13,6 +14,7 @@ def separate_classifiers(data):
 def decision_tree(data, cls):
 	classifier = tree.DecisionTreeClassifier().fit(data, cls)
 	print type(classifier)
+	print classifier.predict([1,2,3,4])
 
 def main():
 	original_data = task1.get_full_data()
