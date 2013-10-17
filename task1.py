@@ -39,7 +39,7 @@ def main():
 	data = format_data(original_data, missing_value_index)
 	m_value = format_data(missing_value, missing_value_index)
 
-	predict()
+	get_nearest_neighbors(data, m_value)
 
 
 
