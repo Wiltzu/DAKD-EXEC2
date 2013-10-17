@@ -34,7 +34,7 @@ def predict(original_data, missing_value, nearest_indices, missing_value_index):
 		values.append(original_data[index][missing_value_index])
 	average_val = np.mean(values)
 	missing_value[0][missing_value_index] = average_val
-	print missing_value
+	
 	result = copy.deepcopy(original_data)
 	result.append(missing_value[0])
 	return result
