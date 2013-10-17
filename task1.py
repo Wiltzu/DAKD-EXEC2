@@ -32,14 +32,18 @@ def predict(original_data, missing_value, nearest_indices, missing_value_index):
 	values = []
 	for index in nearest_indices:
 		values.append(original_data[index][missing_value_index])
+
+	#Ennustettu arvo. Saatetaan tarvita
 	average_val = np.mean(values)
+	#
+	
 	missing_value[0][missing_value_index] = average_val
 	
 	result = copy.deepcopy(original_data)
 	result.append(missing_value[0])
 	return result
 
-def main():
+def get_full_data():
 	original_data, missing_value = read.get_data()
 	missing_value_index = get_index(missing_value)
 	data = format_data(original_data, missing_value_index)
@@ -48,7 +52,4 @@ def main():
 	
 	full_data = predict(original_data, missing_value, neares_indices, missing_value_index)
 
-
-
-if __name__ == '__main__':
-	main()
+	return full_data
