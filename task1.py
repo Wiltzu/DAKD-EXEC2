@@ -31,21 +31,22 @@ def get_nearest_neighbors(data, datapoint):
 def predict(original_data, missing_value, nearest_indices, missing_value_index):
 	values = []
 	for index in nearest_indices:
-		print index
 		values.append(original_data[index][missing_value_index])
-
 	average_val = np.mean(values)
-	print average_val
-
+	missing_value[0][missing_value_index] = average_val
+	print missing_value
+	result = copy.deepcopy(original_data)
+	result.append(missing_value[0])
+	return result
 
 def main():
 	original_data, missing_value = read.get_data()
 	missing_value_index = get_index(missing_value)
 	data = format_data(original_data, missing_value_index)
 	m_value = format_data(missing_value, missing_value_index)
-
 	neares_indices = get_nearest_neighbors(data, m_value)
-	predict(original_data, missing_value, neares_indices, missing_value_index)
+	
+	full_data = predict(original_data, missing_value, neares_indices, missing_value_index)
 
 
 
