@@ -7,5 +7,11 @@ def get_data():
 		if "#" not in row:
 			result.append(map(float, row.split()))
 		else:
-			missing.append(row.split())
-	return result, missing
+			temp = row.split()
+			for i in range(len(temp)):
+				if "#" not in temp[i]:
+					temp[i] = float(temp[i])
+
+			missing.append(temp)
+
+	return result, missing[0]
