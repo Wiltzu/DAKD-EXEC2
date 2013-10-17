@@ -26,11 +26,12 @@ def get_nearest_neighbors(data, datapoint):
 
 	distances, indices = neighbors.kneighbors(point)
 
-	return indices
+	return indices[0]
 
 def predict(original_data, missing_value, nearest_indices, missing_value_index):
 	values = []
 	for index in nearest_indices:
+		print index
 		values.append(original_data[index][missing_value_index])
 
 	average_val = np.mean(values)
