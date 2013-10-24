@@ -1,5 +1,6 @@
 import task1
 from sklearn import tree
+from sklearn.externals.six import StringIO
 import numpy as np
 
 def separate_classifiers(data):
@@ -13,12 +14,16 @@ def separate_classifiers(data):
 def decision_tree(data, cls):
 	classifier = tree.DecisionTreeClassifier().fit(data, cls)
 	print classifier.predict([7,4,5,2])
+	visualize(classifier)
 
 def main():
 	original_data = task1.get_full_data()
 	data, classifier = separate_classifiers(original_data)
 	decision_tree(data, classifier)
 
+def visualize(data):
+	with open("decision_tree_visualization.dot", 'w') as graph:
+		graph = tree.export_graphviz(data, out_file=graph)
 
 if __name__ == '__main__':
 	main()
