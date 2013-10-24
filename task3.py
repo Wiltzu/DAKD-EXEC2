@@ -1,5 +1,6 @@
 import task1
 from sklearn import cross_validation
+import numpy as np
 from sklearn.naive_bayes import GaussianNB as nb
 
 def separate_classifiers(data):
@@ -11,10 +12,15 @@ def separate_classifiers(data):
     return res_data, cls
 
 def naive_bayes(data, classifiers):
-    data_train, data_test, cls_train, cls_test = cross_validation.train_test_split(data, classifiers, test_size=0.4, random_state=2)
-    bayes = nb()
-    pred = bayes.fit(data_train, cls_train)
-    print pred.score(data_test, cls_test)
+    estimates = []
+    data = np.array(data)
+    classifiers = np.array(classifiers)
+    folds = cross_validation.KFold(len(classifiers), n_folds=10, shuffle=True)
+    for train, test in folds:
+        bayes = nb()
+        pred = bayes.fit(data[train], classifiers[train])
+        estimates.append(pred.score(data[test], classifiers[test]))
+    print np.mean(estimates)
 
 
 def main():
