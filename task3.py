@@ -24,8 +24,8 @@ def cross_val(data, classifiers):
         tree = decision_tree(data[train], classifiers[train])
         tree_estimates.append(tree.score(data[test], classifiers[test]))
 
-
-    print np.mean(bayes_estimates)
+    print 'Naive bayes %s' %str(np.mean(bayes_estimates))
+    print 'decision tree %s' %str(np.mean(tree_estimates))
 
 def naive_bayes(data, classifiers):
     bayes = nb()
@@ -35,13 +35,10 @@ def naive_bayes(data, classifiers):
 def decision_tree(data, cls):
     return tree.DecisionTreeClassifier().fit(data, cls)
 
-    
-
-
 def main():
     original_data = task1.get_full_data()
     data, classifiers = separate_classifiers(original_data)
-    naive_bayes(data, classifiers)
+    cross_val(data, classifiers)
 
 if __name__ == '__main__':
     main()
