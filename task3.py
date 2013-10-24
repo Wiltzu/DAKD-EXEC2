@@ -3,10 +3,10 @@ from sklearn import cross_validation
 import numpy as np
 from sklearn.naive_bayes import GaussianNB as nb
 from sklearn import tree
+import matplotlib.pyplot as mplot
 
 def cross_val(data, classifiers):
-    bayes_averages =  []
-    tree_averages = []
+    averages =  []
     for i in range(5):
         bayes_estimates = []
         tree_estimates =[]
@@ -19,18 +19,22 @@ def cross_val(data, classifiers):
             tree = decision_tree(data[train], classifiers[train])
             tree_estimates.append(tree.score(data[test], classifiers[test]))
 
+        temp = []
+        temp.append(np.mean(bayes_estimates))
+        temp.append(np.mean(tree_estimates))
+        averages.append(temp)
 
-        bayes_averages.append(np.mean(bayes_estimates))
-        tree_averages.append(np.mean(tree_estimates))
+    visualize(averages)
 
-def visualize(bayes_avg, tree_avg):
+def visualize(avg):
     columns = ['Bayes scores', 'Tree scores']
+    rows = [1,2,3,4,5]
     ax = mplot.subplot(111,frame_on=False)
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
-    cells = [bayes_avg, tree_avg]
-    table = mplot.table(cellText=cells,
+    table = mplot.table(cellText=avg,
                         colLabels=columns,
+                        rowLabels=rows,
                         loc='center')
     mplot.subplots_adjust(left=0.2)
     mplot.show()
