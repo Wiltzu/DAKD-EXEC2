@@ -35,6 +35,7 @@ def predict(original_data, missing_value, nearest_indices, missing_value_index):
 
     #Ennustettu arvo. Saatetaan tarvita
     average_val = np.mean(values)
+    print type(average_val)
     print values
     print 'predicted missing value: %s' %str(average_val)
     #

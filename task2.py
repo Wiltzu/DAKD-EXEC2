@@ -23,7 +23,7 @@ def main():
 def visualize(data):
 	with open("decision_tree_visualization.dot", 'w') as graph:
 		graph = tree.export_graphviz(data, out_file=graph)
-	os.system('dot -Tpdf decision_tree_visualization.dot -o decision_tree_visualization.pdf')
+	os.system('dot -Tpdf decision_tree_visualization.dot -o decision_tree_visualization.png')
 	os.unlink('decision_tree_visualization.dot')
 
 if __name__ == '__main__':
