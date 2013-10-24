@@ -1,6 +1,5 @@
 import task1, os
 from sklearn import tree
-from sklearn.externals.six import StringIO
 import numpy as np
 
 def separate_classifiers(data):
