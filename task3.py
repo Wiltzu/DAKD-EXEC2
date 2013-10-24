@@ -1,4 +1,5 @@
 import task1
+from sklearn.naive_bayes import GaussianNB as nb
 
 def separate_classifiers(data):
 	res_data = []
