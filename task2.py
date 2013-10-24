@@ -12,7 +12,7 @@ def separate_classifiers(data):
 
 def decision_tree(data, cls):
 	classifier = tree.DecisionTreeClassifier().fit(data, cls)
-	print classifier.predict([7,4,5,2])
+	#print classifier.predict([7,4,5,2])
 	visualize(classifier)
 
 def main():
