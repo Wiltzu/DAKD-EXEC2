@@ -1,4 +1,4 @@
-import task1
+import task1, os
 from sklearn import tree
 from sklearn.externals.six import StringIO
 import numpy as np
@@ -24,6 +24,7 @@ def main():
 def visualize(data):
 	with open("decision_tree_visualization.dot", 'w') as graph:
 		graph = tree.export_graphviz(data, out_file=graph)
+	os.unlink('decision_tree_visualization.dot')
 
 if __name__ == '__main__':
 	main()
