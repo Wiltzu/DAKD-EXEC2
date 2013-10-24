@@ -1,16 +1,8 @@
-import task1
+import task1, task2
 from sklearn import cross_validation
 import numpy as np
 from sklearn.naive_bayes import GaussianNB as nb
 from sklearn import tree
-
-def separate_classifiers(data):
-    res_data = []
-    cls = []
-    for row in data:
-        res_data.append(row[:-1])
-        cls.append(row[4])
-    return res_data, cls
 
 def cross_val(data, classifiers):
     bayes_estimates = []
@@ -37,7 +29,7 @@ def decision_tree(data, cls):
 
 def main():
     original_data = task1.get_full_data()
-    data, classifiers = separate_classifiers(original_data)
+    data, classifiers = task2.separate_classifiers(original_data)
     cross_val(data, classifiers)
 
 if __name__ == '__main__':
