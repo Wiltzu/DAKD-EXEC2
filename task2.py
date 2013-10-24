@@ -11,7 +11,7 @@ def separate_classifiers(data):
 	return res_data, cls
 
 def decision_tree(data, cls):
-	classifier = tree.DecisionTreeClassifier().fit(data, cls)
+	classifier = tree.DecisionTreeClassifier(max_depth=2).fit(data, cls)
 	#print classifier.predict([7,4,5,2])
 	visualize(classifier)
 
@@ -23,7 +23,7 @@ def main():
 def visualize(data):
 	with open("decision_tree_visualization.dot", 'w') as graph:
 		graph = tree.export_graphviz(data, out_file=graph)
-	os.system('dot -Tpdf decision_tree_visualization.dot -o decision_tree_visualization.png')
+	os.system('dot -Tpdf decision_tree_visualization.dot -o decision_tree_visualization.pdf')
 	os.unlink('decision_tree_visualization.dot')
 
 if __name__ == '__main__':

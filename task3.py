@@ -25,7 +25,7 @@ def naive_bayes(data, classifiers):
 
 
 def decision_tree(data, cls):
-    return tree.DecisionTreeClassifier().fit(data, cls)
+    return tree.DecisionTreeClassifier(max_depth=2).fit(data, cls)
 
 def main():
     original_data = task1.get_full_data()
